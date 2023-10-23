@@ -5,9 +5,12 @@ HOST=DOMAINE_NAME
 LOGIN=LOGIN
 PASSWORD=PASSWORD
 PATH_LOG=/var/log/dynhost.log
+CONFIG_FILE=dynhost.sh.config
 
 # load local configurations
-. dynhost.sh.config
+current_script_realpath="$(realpath "$0")"
+dir="$(dirname "$current_script_realpath")"
+. "$dir/$CONFIG_FILE"
 
 # ensure log file exists
 touch $PATH_LOG

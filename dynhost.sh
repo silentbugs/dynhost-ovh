@@ -9,6 +9,9 @@ PATH_LOG=/var/log/dynhostovh.log
 # load local configurations
 . dynhost.sh.config
 
+# ensure log file exists
+touch $PATH_LOG
+
 # Get current IPv4 and corresponding configured
 HOST_IP=$(dig +short $HOST A)
 CURRENT_IP=$(curl -m 5 -4 ifconfig.co 2>/dev/null)

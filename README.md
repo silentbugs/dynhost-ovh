@@ -10,15 +10,47 @@ sudo apt-get install dnsutils
 ```
 
 # How to use
-1. Download the dynhost.sh script and put it in the folder /etc/cron.hourly (to check every hour)
-2. Add execution permissions to file : chmod +x dynhost.sh
-3. Rename dynhost.sh to dynhost (because "." at the end of the file name is not allowed in cron)
-4. Modify the configuration file `dynhost.sh.config` with the fllowing available variable overrides:
+1. Clone to your remote machine:
+
+```bash
+mkdir ~/scripts && cd ~/scripts
+git clone https://github.com/silentbugs/dynhost-ovh
+
+# create symlink to locally cloned script
+mkdir -p /usr/local/bin/ovh/
+ln -s /home/$USERNAME/scripts/dynhost-ovh/dynhost.sh /usr/local/bin/ovh/dynhost.sh
+```
+
+2. Create cron entry `/etc/cron.d/dynhost` with the following:
+
+```bash
+# /etc/cron.d/dynhost: update local dynamic ip to be used by remotes
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# update IP every minute
+*/1 * * * * root /usr/local/bin/ovh/dynhost.sh
+```
+
+3. Modify the configuration file `dynhost.sh.config` with the fllowing available variable overrides:
 
 ```bash
 HOST='dynhost.example.com'
 LOGIN='example.com-username'
 PASSWORD='password'
+```
+
+4. Ensure `logrotate` is installed and add the following logrotate entry to `/etc/logrotate.d/dynhost`:
+
+```bash
+/var/log/dynhost.log {
+  rotate 12
+  monthly
+  compress
+  delaycompress
+  missingok
+  notifempty
+}
 ```
 
 # How it works

@@ -13,7 +13,13 @@ sudo apt-get install dnsutils
 1. Download the dynhost.sh script and put it in the folder /etc/cron.hourly (to check every hour)
 2. Add execution permissions to file : chmod +x dynhost.sh
 3. Rename dynhost.sh to dynhost (because "." at the end of the file name is not allowed in cron)
-4. Modify the script with variables : HOST, LOGIN, PASSWORD
+4. Modify the configuration file `dynhost.sh.config` with the fllowing available variable overrides:
+
+```bash
+HOST='dynhost.example.com'
+LOGIN='example.com-username'
+PASSWORD='password'
+```
 
 # How it works
 1. The command dig is used to retrieve the IP address of your domain name.

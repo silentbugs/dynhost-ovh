@@ -6,6 +6,8 @@ LOGIN=LOGIN
 PASSWORD=PASSWORD
 
 PATH_LOG=/var/log/dynhostovh.log
+# load local configurations
+. dynhost.sh.config
 
 # Get current IPv4 and corresponding configured
 HOST_IP=$(dig +short $HOST A)

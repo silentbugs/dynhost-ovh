@@ -4,8 +4,8 @@
 HOST=DOMAINE_NAME
 LOGIN=LOGIN
 PASSWORD=PASSWORD
+PATH_LOG=/var/log/dynhost.log
 
-PATH_LOG=/var/log/dynhostovh.log
 # load local configurations
 . dynhost.sh.config
 

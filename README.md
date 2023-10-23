@@ -25,4 +25,4 @@ PASSWORD='password'
 1. The command dig is used to retrieve the IP address of your domain name.
 2. The command curl (with the website ifconfig.co) is used to retrieve the current public IP address of your machine.
 3. The two IPs are compared and if necessary a curl command to OVH is used to update your DynHost with your current public IP address.
-4. Log file is on ```/var/log/dynhostovh.log```
+4. Log file is on ```/var/log/dynhost.log```
